@@ -12,8 +12,17 @@ terraform {
     }
   }
 
-}
+  backend "remote" {
+    organization = "kylesbx"
 
+    workspaces {
+      prefix = "tstapp-kyle-gcs-"
+    }
+  }
+
+
+
+}
 
 
 provider "google" {
