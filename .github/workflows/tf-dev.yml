@@ -32,13 +32,13 @@ jobs:
           terraform workspace show
       
       - name: Terraform Validate
-        if: github.event_name == 'pull_request'
+        #if: github.event_name == 'pull_request'
         id: validate
         run: terraform validate    
 
       - name: Terraform Plan
         id: plan
-        if: github.event_name == 'pull_request'
+        #if: github.event_name == 'pull_request'
         run: |
           export TF_WORKSPACE="dev"
           terraform plan -input=false
