@@ -5,6 +5,11 @@ variable "project_id" {
   description = "ID of the project."
 }
 
+variable "env" {
+  type        = string
+  description = "environment"
+}
+
 ##########################
 ### Bucket variables ####   
 variable "name" {
