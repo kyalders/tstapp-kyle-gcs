@@ -41,7 +41,7 @@ jobs:
         #if: github.event_name == 'pull_request'
         run: |
           export TF_WORKSPACE="dev"
-          terraform plan -input=false
+          terraform plan -var-file="dev.tfvars"
         continue-on-error: true
 
       - uses: actions/github-script@0.9.0
