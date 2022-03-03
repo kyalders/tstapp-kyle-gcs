@@ -11,7 +11,7 @@ on:
 
 
 jobs:
-prod:
+  prod:
     name: "tf develop prod environment"
     runs-on: ubuntu-latest
     environment: prod
