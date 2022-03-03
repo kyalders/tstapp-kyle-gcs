@@ -13,5 +13,7 @@ resource "google_compute_instance" "default" {
    initialize_params {
      image = "debian-cloud/debian-9"
    }
+ network_interface {
+   network = "default"
  }
 }
