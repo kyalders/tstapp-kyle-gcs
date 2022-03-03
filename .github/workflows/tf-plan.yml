@@ -70,11 +70,11 @@ jobs:
         if: steps.plan.outcome == 'failure'
         run: exit 1
 
-      - name: Terraform Apply
-        if: github.ref == 'refs/heads/dev' && github.event_name == 'push'
-        run: |
-          export TF_WORKSPACE="dev"
-          terraform apply -auto-approve
+    #  - name: Terraform Apply
+    #    if: github.ref == 'refs/heads/dev' && github.event_name == 'push'
+    #    run: |
+    #      export TF_WORKSPACE="dev"
+    #      terraform apply -auto-approve
           
   prod:
     name: "tf plan prod environment"
@@ -106,7 +106,7 @@ jobs:
         id: plan
         #if: github.event_name == 'pull_request'
         run: |
-          export TF_WORKSPACE="dev"
+          export TF_WORKSPACE="prod"
           terraform plan -input=false
         continue-on-error: true
 
@@ -135,9 +135,9 @@ jobs:
         if: steps.plan.outcome == 'failure'
         run: exit 1
 
-      - name: Terraform Apply
-        if: github.ref == 'refs/heads/prod' && github.event_name == 'push'
-        run: |
-          export TF_WORKSPACE="prod"
-          terraform apply -auto-approve 
+      #- name: Terraform Apply
+      #  if: github.ref == 'refs/heads/prod' && github.event_name == 'push'
+      #  run: |
+      #    export TF_WORKSPACE="prod"
+      #    terraform apply -auto-approve 
 
