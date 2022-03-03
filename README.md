@@ -1,4 +1,4 @@
 # tstapp-kyle-gcs
 
 
-This repo serves as a guide to terraform deployments.
+This repo serves as a great guide to terraform deployments.
