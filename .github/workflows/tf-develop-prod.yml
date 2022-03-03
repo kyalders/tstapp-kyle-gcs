@@ -71,7 +71,7 @@ jobs:
         run: exit 1
 
       - name: Terraform Apply
-        if: github.ref == 'refs/heads/prod' && github.event_name == 'push'
+        if: github.ref == 'refs/heads/main' && github.event_name == 'push'
         run: |
           export TF_WORKSPACE="prod"
           terraform apply -auto-approve 
