@@ -1,7 +1,7 @@
 
 resource "google_compute_instance" "http_server" {
   project      = "${var.project_id}"
-  zone         = "us-east4-a"
+  zone         = "us-east4-b"
   name         = "${var.env}-apache2-instance"
   machine_type = "f1-micro"
 
