@@ -62,7 +62,7 @@ resource "google_compute_firewall" "allow-http" {
 }
   
 resource "google_compute_firewall" "allow-ssh" {
-  name    = "${module.vpc.network_name}-allow-http"
+  name    = "${module.vpc.network_name}-allow-ssh"
   network = module.vpc.network_name
   project = "${var.project_id}"
 
