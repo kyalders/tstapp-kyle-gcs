@@ -1,4 +1,4 @@
-
+#HTTP Server
 resource "google_compute_instance" "http_server" {
   project      = "${var.project_id}"
   zone         = "us-east4-b"
@@ -26,7 +26,7 @@ resource "google_compute_instance" "http_server" {
   # Apply the firewall rule to allow external IPs to access this instance
   tags = ["http-server"]
 }
-
+#VPC network
 module "vpc" {
   source  = "terraform-google-modules/network/google"
   version = "3.3.0"
@@ -46,8 +46,8 @@ module "vpc" {
     "${var.env}-subnet-01" = []
   }
 }
-  
- resource "google_compute_firewall" "allow-http" {
+#Firewall rule 
+resource "google_compute_firewall" "allow-http" {
   name    = "${module.vpc.network_name}-allow-http"
   network = module.vpc.network_name
   project = "${var.project_id}"
