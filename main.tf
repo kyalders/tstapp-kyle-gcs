@@ -46,8 +46,8 @@ module "vpc" {
 }
   
  resource "google_compute_firewall" "allow-http" {
-  name    = "${modle.vpc.network_name}-allow-http"
-  network = "${modle.vpc.network_name}"
+  name    = "${module.vpc.network_name}-allow-http"
+  network = "${module.vpc.network_name}"
   project = "${var.project_id}"
 
   allow {
