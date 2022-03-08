@@ -32,7 +32,7 @@ module "vpc" {
   version = "3.3.0"
 
   project_id   = "${var.project_id}"
-  network_name = "${var.env}"
+  network_name = "${var.env}-network"
 
   subnets = [
     {
@@ -49,7 +49,7 @@ module "vpc" {
   
  resource "google_compute_firewall" "allow-http" {
   name    = "${module.vpc.network_name}-allow-http"
-  network = "${module.vpc.network_name}"
+  network = module.vpc.network_name
   project = "${var.project_id}"
 
   allow {
