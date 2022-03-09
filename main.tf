@@ -1,6 +1,6 @@
 #HTTP Server
 resource "google_compute_instance" "http_server" {
-  project      = "${var.project_id}"
+  project      = "${var.project_id}${var.env}"
   zone         = "us-east4-b"
   name         = "${var.env}-apache2-instance"
   machine_type = "f1-micro"
@@ -31,7 +31,7 @@ module "vpc" {
   source  = "terraform-google-modules/network/google"
   version = "3.3.0"
 
-  project_id   = "${var.project_id}"
+  project_id   = "${var.project_id}${var.env}"
   network_name = "${var.env}-network"
 
   subnets = [
@@ -50,7 +50,7 @@ module "vpc" {
 resource "google_compute_firewall" "allow-http" {
   name    = "${module.vpc.network_name}-allow-http"
   network = module.vpc.network_name
-  project = "${var.project_id}"
+  project = "${var.project_id}${var.env}"
 
   allow {
     protocol = "tcp"
@@ -64,7 +64,7 @@ resource "google_compute_firewall" "allow-http" {
 resource "google_compute_firewall" "allow-ssh" {
   name    = "${module.vpc.network_name}-allow-ssh"
   network = module.vpc.network_name
-  project = "${var.project_id}"
+  project = "${var.project_id}${var.env}"
 
   allow {
     protocol = "tcp"
