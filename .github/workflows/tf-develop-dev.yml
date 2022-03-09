@@ -44,7 +44,7 @@ jobs:
           export TF_WORKSPACE="dev"
           export TF_VAR_env=${{ secrets.env }}
           echo $TF_VAR_env
-          terraform plan -input=false
+          terraform plan
         continue-on-error: true
 
       - uses: actions/github-script@0.9.0
