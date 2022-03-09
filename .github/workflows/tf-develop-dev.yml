@@ -43,6 +43,7 @@ jobs:
         run: |
           export TF_WORKSPACE="dev"
           export TF_VAR_env=${{ secrets.env }}
+          echo $TF_VAR_env
           terraform plan -input=false
         continue-on-error: true
 
