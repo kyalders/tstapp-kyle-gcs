@@ -42,9 +42,8 @@ jobs:
         #if: github.event_name == 'pull_request'
         run: |
           export TF_WORKSPACE="dev"
+          export TF_VAR_env=${{ secrets.env }}
           terraform plan -input=false
-        env:
-          TF_VAR_env: ${{ secrets.env }}
         continue-on-error: true
 
       - uses: actions/github-script@0.9.0
@@ -76,6 +75,5 @@ jobs:
         if: github.ref == 'refs/heads/dev' && github.event_name == 'push'
         run: |
           export TF_WORKSPACE="dev"
+          export TF_VAR_env=${{ secrets.env }}
           terraform apply -auto-approve
-        env:
-          TF_VAR_env: ${{ secrets.env }}
