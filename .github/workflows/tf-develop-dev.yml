@@ -42,7 +42,7 @@ jobs:
         #if: github.event_name == 'pull_request'
         run: |
           export TF_WORKSPACE="dev"
-          export TF_VAR_env=${{ secrets.env }}
+          export TF_VAR_env="${{ secrets.env }}"
           echo $TF_VAR_env
           terraform plan
         continue-on-error: true
