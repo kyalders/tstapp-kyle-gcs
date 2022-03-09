@@ -6,8 +6,8 @@ variable "project_id" {
 }
 
 variable "env" {
-  type        = string
-  description = "environment"
+  #type        = string
+  #description = "environment"
 }
 
 ##########################
