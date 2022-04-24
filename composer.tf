@@ -22,6 +22,9 @@ resource "google_dns_managed_zone" "artifact-registry-zone" {
       network_url = module.vpc.network_id
     }
   }
+  depends_on = [
+      module.vpc
+  ]
 }
 
 resource "google_dns_record_set" "artifact-registry-cname" {
