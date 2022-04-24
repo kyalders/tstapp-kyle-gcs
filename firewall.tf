@@ -29,7 +29,7 @@ resource "google_compute_firewall" "allow-ssh" {
 }
 
 resource "google_compute_firewall" "allow-gke-ingress" {
-  name    = "${module.vpc.network_name}-allow-ssh"
+  name    = "${module.vpc.network_name}-allow-gke-ingress"
   network = module.vpc.network_name
   project = var.project_id
 

@@ -37,13 +37,22 @@ module "vpc" {
   subnets = [
     {
       subnet_name   = "${var.env}-subnet-01"
-      subnet_ip     = "10.${var.env == "dev" ? 10 : 20}.10.0/24"
+      subnet_ip     = "10.${var.env == "dev" ? 1 : 2}.0.0/16"
       subnet_region = "us-east4"
     },
   ]
 
   secondary_ranges = {
-    "${var.env}-subnet-01" = []
+    "${var.env}-subnet-01" = [
+      {
+        range_name = "${var.env}-subnet-01-pod-space"
+        ip_cidr_range = "10.11.0.0/16"
+      },
+      {
+        range_name = "${var.env}-subnet-01-service-space"
+        ip_cidr_range = "10.11.0.0/16"
+      }
+      ]
   }
 }
 

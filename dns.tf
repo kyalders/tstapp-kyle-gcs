@@ -31,7 +31,7 @@ resource "google_dns_record_set" "artifact-registry-cname" {
 }
 
 resource "google_dns_record_set" "artifact-registry-a" {
-  name         = "*.pkg.dev."
+  name         = "pkg.dev."
   managed_zone = google_dns_managed_zone.artifact-registry-zone.name
   type         = "A"
   ttl          = 300
