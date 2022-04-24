@@ -16,7 +16,7 @@ resource "google_dns_managed_zone" "artifact-registry" {
 
 resource "google_dns_record_set" "artifact-registry-cname" {
   name         = "*.pkg.dev"
-  managed_zone = google_dns_managed_zone.artifact-registry.dns_name}
+  managed_zone = google_dns_managed_zone.artifact-registry.dns_name
   type         = "CNAME"
   ttl          = 300
 
