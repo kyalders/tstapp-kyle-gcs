@@ -1,7 +1,7 @@
 resource "google_dns_managed_zone" "artifact-registry" {
   name        = "artifact-registry"
   dns_name    = "pkg.dev"
-  description = ""
+  description = "artifact-registry zone"
   labels = {
   }
 
