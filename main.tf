@@ -50,7 +50,7 @@ module "vpc" {
       },
       {
         range_name = "${var.env}-subnet-01-service-space"
-        ip_cidr_range = "10.11.0.0/16"
+        ip_cidr_range = "10.12.0.0/16"
       }
       ]
   }
