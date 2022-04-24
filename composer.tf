@@ -9,7 +9,7 @@ resource "google_dns_managed_zone" "artifact-registry" {
 
   private_visibility_config {
     networks {
-      network_url = google_compute_network.network-1.id
+      #network_url = google_compute_network.network-1.id
     }
   }
 }
