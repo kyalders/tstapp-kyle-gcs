@@ -33,7 +33,7 @@ resource "google_dns_record_set" "artifact-registry-cname" {
   type         = "CNAME"
   ttl          = 300
 
-  rrdatas = ["*pkg.dev."]
+  rrdatas = ["pkg.dev."]
 
   depends_on = [
     resource.google_dns_managed_zone.artifact-registry-zone
@@ -73,7 +73,7 @@ resource "google_dns_managed_zone" "composer-private-access-zone" {
 }
 
 resource "google_dns_record_set" "composer-private-access-cname" {
-  name         = "*composer.cloud.google.com."
+  name         = "*.composer.cloud.google.com."
   managed_zone = google_dns_managed_zone.composer-private-access-zone.name
   type         = "CNAME"
   ttl          = 300
@@ -122,7 +122,7 @@ resource "google_dns_managed_zone" "container-registry-zone" {
 }
 
 resource "google_dns_record_set" "container-registry-cname" {
-  name         = "*composer.cloud.google.com."
+  name         = "*.gcr.io"
   managed_zone = google_dns_managed_zone.container-registry-zone.name
   type         = "CNAME"
   ttl          = 300
@@ -153,7 +153,7 @@ resource "google_dns_record_set" "container-registry-a" {
 
 resource "google_dns_managed_zone" "private-google-access-zone" {
   name        = "private-google-access"
-  dns_name    = "*googleapis.com."
+  dns_name    = "googleapis.com."
   description = "private-google-access zone"
   labels = {
   }
@@ -171,12 +171,12 @@ resource "google_dns_managed_zone" "private-google-access-zone" {
 }
 
 resource "google_dns_record_set" "private-google-access-cname" {
-  name         = "*composer.cloud.google.com."
+  name         = "*.googleapis.com."
   managed_zone = google_dns_managed_zone.private-google-access-zone.name
   type         = "CNAME"
   ttl          = 300
 
-  rrdatas = ["*googleapis.com."]
+  rrdatas = ["restricted.googleapis.com"]
 
   depends_on = [
     resource.google_dns_managed_zone.private-google-access-zone
@@ -184,12 +184,16 @@ resource "google_dns_record_set" "private-google-access-cname" {
 }
 
 resource "google_dns_record_set" "private-google-access-a" {
-  name         = "*googleapis.com"
+  name         = "restricted.googleapis.com"
   managed_zone = google_dns_managed_zone.private-google-access-zone.name
   type         = "A"
   ttl          = 300
 
-  rrdatas = ["restricted.googleapis.com"]
+  rrdatas = ["199.36.153.4",
+			 "199.36.153.5",
+			 "199.36.153.6",
+			 "199.36.153.7",
+			 ]
 
   depends_on = [
     resource.google_dns_managed_zone.private-google-access-zone
