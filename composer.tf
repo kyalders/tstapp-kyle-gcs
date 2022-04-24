@@ -19,7 +19,7 @@ resource "google_dns_managed_zone" "artifact-registry-zone" {
 
   private_visibility_config {
     networks {
-      network_url = module.vpc.network_id
+      network_url = module.vpc.network_self_link
     }
   }
   depends_on = [
