@@ -1,3 +1,13 @@
+module "composer_service_account" {
+  source     = "terraform-google-modules/service-accounts/google"
+  version    = "~> 3.0"
+  project_id = var.project_id
+  prefix     = "composer-sa"
+  names      = ["first", "second"]
+  project_roles = ["${var.project_id}=>roles/composer.worker",
+  "${var.project_id}=>roles/iam.serviceAccountUser"]
+}
+
 resource "google_dns_managed_zone" "artifact-registry-zone" {
   name        = "artifact-registry"
   dns_name    = "pkg.dev."
@@ -9,7 +19,7 @@ resource "google_dns_managed_zone" "artifact-registry-zone" {
 
   private_visibility_config {
     networks {
-      network_url = module.vpc.network_name
+      network_url = module.vpc.network_id
     }
   }
 }

@@ -1,9 +1,9 @@
 #HTTP Server
 resource "google_compute_instance" "http_server" {
-  project      = "${var.project_id}"
-  zone         = "us-east4-b"
-  name         = "${var.env}-apache2-instance"
-  machine_type = "f1-micro"
+  project                   = var.project_id
+  zone                      = "us-east4-b"
+  name                      = "${var.env}-apache2-instance"
+  machine_type              = "f1-micro"
   allow_stopping_for_update = true
 
   metadata_startup_script = "sudo apt-get update && sudo apt-get install apache2 -y && echo '<html><body><h1>Environment: ${var.env}</h1></body></html>' | sudo tee /var/www/html/index.html"
@@ -31,7 +31,7 @@ module "vpc" {
   source  = "terraform-google-modules/network/google"
   version = "3.3.0"
 
-  project_id   = "${var.project_id}"
+  project_id   = var.project_id
   network_name = "${var.env}-network"
 
   subnets = [
@@ -50,7 +50,7 @@ module "vpc" {
 resource "google_compute_firewall" "allow-http" {
   name    = "${module.vpc.network_name}-allow-http"
   network = module.vpc.network_name
-  project = "${var.project_id}"
+  project = var.project_id
 
   allow {
     protocol = "tcp"
@@ -60,11 +60,11 @@ resource "google_compute_firewall" "allow-http" {
   target_tags   = ["http-server"]
   source_ranges = ["0.0.0.0/0"]
 }
-  
+
 resource "google_compute_firewall" "allow-ssh" {
   name    = "${module.vpc.network_name}-allow-ssh"
   network = module.vpc.network_name
-  project = "${var.project_id}"
+  project = var.project_id
 
   allow {
     protocol = "tcp"
