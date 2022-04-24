@@ -35,7 +35,7 @@ resource "google_compute_firewall" "allow-gke-ingress" {
 
   allow {
     protocol = "tcp"
-    ports    = ["80,443"]
+    ports    = ["80","443"]
   }
 
   target_tags   = ["http-server"]
