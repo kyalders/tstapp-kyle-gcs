@@ -1,4 +1,5 @@
 resource "google_dns_managed_zone" "artifact-registry-zone" {
+  project     = var.project_id
   name        = "artifact-registry"
   dns_name    = "pkg.dev."
   description = "artifact-registry zone"
@@ -48,6 +49,7 @@ resource "google_dns_record_set" "artifact-registry-a" {
 }
 
 resource "google_dns_managed_zone" "composer-private-access-zone" {
+  project     = var.project_id
   name        = "composer-private-access"
   dns_name    = "composer.cloud.google.com."
   description = "composer-private-access zone"
@@ -97,6 +99,7 @@ resource "google_dns_record_set" "composer-private-access-a" {
 }
 
 resource "google_dns_managed_zone" "container-registry-zone" {
+  project     = var.project_id
   name        = "container-registry"
   dns_name    = "gcr.io."
   description = "container-registry zone"
@@ -146,6 +149,7 @@ resource "google_dns_record_set" "container-registry-a" {
 }
 
 resource "google_dns_managed_zone" "private-google-access-zone" {
+  project     = var.project_id
   name        = "private-google-access"
   dns_name    = "googleapis.com."
   description = "private-google-access zone"
