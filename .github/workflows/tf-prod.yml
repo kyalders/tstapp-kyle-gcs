@@ -5,9 +5,9 @@ on:
 
 jobs:
   tf-prod-apply:
-    name: TF DEV APPLY
+    name: TF PROD APPLY
     uses: kyalders/terraform_workflows/.github/workflows/terraform.yml@main
-    if: github.ref == 'main'
+    if: github.event_name == 'workflow_dispatch'
     with:
       env: prod
       tf-path: ./
