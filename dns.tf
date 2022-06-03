@@ -19,7 +19,7 @@ resource "google_dns_managed_zone" "artifact-registry-zone" {
 }
 
 resource "google_dns_record_set" "artifact-registry-cname" {
-  project     = var.project_id
+  project      = var.project_id
   name         = "*.pkg.dev."
   managed_zone = google_dns_managed_zone.artifact-registry-zone.name
   type         = "CNAME"
@@ -33,7 +33,7 @@ resource "google_dns_record_set" "artifact-registry-cname" {
 }
 
 resource "google_dns_record_set" "artifact-registry-a" {
-  project     = var.project_id
+  project      = var.project_id
   name         = "pkg.dev."
   managed_zone = google_dns_managed_zone.artifact-registry-zone.name
   type         = "A"
@@ -71,7 +71,7 @@ resource "google_dns_managed_zone" "composer-private-access-zone" {
 }
 
 resource "google_dns_record_set" "composer-private-access-cname" {
-  project     = var.project_id
+  project      = var.project_id
   name         = "*.composer.cloud.google.com."
   managed_zone = google_dns_managed_zone.composer-private-access-zone.name
   type         = "CNAME"
@@ -85,7 +85,7 @@ resource "google_dns_record_set" "composer-private-access-cname" {
 }
 
 resource "google_dns_record_set" "composer-private-access-a" {
-  project     = var.project_id
+  project      = var.project_id
   name         = "composer.cloud.google.com."
   managed_zone = google_dns_managed_zone.composer-private-access-zone.name
   type         = "A"
@@ -123,7 +123,7 @@ resource "google_dns_managed_zone" "container-registry-zone" {
 }
 
 resource "google_dns_record_set" "container-registry-cname" {
-  project     = var.project_id
+  project      = var.project_id
   name         = "*.gcr.io."
   managed_zone = google_dns_managed_zone.container-registry-zone.name
   type         = "CNAME"
@@ -137,7 +137,7 @@ resource "google_dns_record_set" "container-registry-cname" {
 }
 
 resource "google_dns_record_set" "container-registry-a" {
-  project     = var.project_id
+  project      = var.project_id
   name         = "gcr.io."
   managed_zone = google_dns_managed_zone.container-registry-zone.name
   type         = "A"
@@ -175,7 +175,7 @@ resource "google_dns_managed_zone" "private-google-access-zone" {
 }
 
 resource "google_dns_record_set" "private-google-access-cname" {
-  project     = var.project_id
+  project      = var.project_id
   name         = "*.googleapis.com."
   managed_zone = google_dns_managed_zone.private-google-access-zone.name
   type         = "CNAME"
@@ -189,7 +189,7 @@ resource "google_dns_record_set" "private-google-access-cname" {
 }
 
 resource "google_dns_record_set" "private-google-access-a" {
-  project     = var.project_id
+  project      = var.project_id
   name         = "restricted.googleapis.com."
   managed_zone = google_dns_managed_zone.private-google-access-zone.name
   type         = "A"
