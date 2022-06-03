@@ -13,7 +13,7 @@ resource "google_dns_managed_zone" "artifact-registry-zone" {
     }
   }
   depends_on = [
-      module.vpc
+    module.vpc
   ]
 }
 
@@ -37,10 +37,10 @@ resource "google_dns_record_set" "artifact-registry-a" {
   ttl          = 300
 
   rrdatas = ["199.36.153.4",
-			 "199.36.153.5",
-			 "199.36.153.6",
-			 "199.36.153.7",
-			 ]
+    "199.36.153.5",
+    "199.36.153.6",
+    "199.36.153.7",
+  ]
 
   depends_on = [
     resource.google_dns_managed_zone.artifact-registry-zone
@@ -62,7 +62,7 @@ resource "google_dns_managed_zone" "composer-private-access-zone" {
     }
   }
   depends_on = [
-      module.vpc
+    module.vpc
   ]
 }
 
@@ -86,10 +86,10 @@ resource "google_dns_record_set" "composer-private-access-a" {
   ttl          = 300
 
   rrdatas = ["199.36.153.4",
-			 "199.36.153.5",
-			 "199.36.153.6",
-			 "199.36.153.7",
-			 ]
+    "199.36.153.5",
+    "199.36.153.6",
+    "199.36.153.7",
+  ]
 
   depends_on = [
     resource.google_dns_managed_zone.composer-private-access-zone
@@ -111,7 +111,7 @@ resource "google_dns_managed_zone" "container-registry-zone" {
     }
   }
   depends_on = [
-      module.vpc
+    module.vpc
   ]
 }
 
@@ -135,10 +135,10 @@ resource "google_dns_record_set" "container-registry-a" {
   ttl          = 300
 
   rrdatas = ["199.36.153.4",
-			 "199.36.153.5",
-			 "199.36.153.6",
-			 "199.36.153.7",
-			 ]
+    "199.36.153.5",
+    "199.36.153.6",
+    "199.36.153.7",
+  ]
 
   depends_on = [
     resource.google_dns_managed_zone.container-registry-zone
@@ -160,7 +160,7 @@ resource "google_dns_managed_zone" "private-google-access-zone" {
     }
   }
   depends_on = [
-      module.vpc
+    module.vpc
   ]
 }
 
@@ -184,10 +184,10 @@ resource "google_dns_record_set" "private-google-access-a" {
   ttl          = 300
 
   rrdatas = ["199.36.153.4",
-			 "199.36.153.5",
-			 "199.36.153.6",
-			 "199.36.153.7",
-			 ]
+    "199.36.153.5",
+    "199.36.153.6",
+    "199.36.153.7",
+  ]
 
   depends_on = [
     resource.google_dns_managed_zone.private-google-access-zone

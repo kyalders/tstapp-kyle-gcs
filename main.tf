@@ -45,14 +45,14 @@ module "vpc" {
   secondary_ranges = {
     "${var.env}-subnet-01" = [
       {
-        range_name = "${var.env}-subnet-01-pod-space"
+        range_name    = "${var.env}-subnet-01-pod-space"
         ip_cidr_range = "10.11.0.0/16"
       },
       {
-        range_name = "${var.env}-subnet-01-service-space"
+        range_name    = "${var.env}-subnet-01-service-space"
         ip_cidr_range = "10.12.0.0/16"
       }
-      ]
+    ]
   }
 }
 

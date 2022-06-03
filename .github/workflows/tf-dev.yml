@@ -8,7 +8,7 @@ on:
 jobs:
   tf-dev-plan:
     name: TF DEV PLAN
-    uses: kyalders/terraform_workflows/.github/workflows/terraform-beta.yml@main
+    uses: kyalders/terraform_workflows/.github/workflows/terraform.yml@main
     if: github.event_name == 'pull_request' && github.event.action != 'closed'  || github.event_name == 'workflow_dispatch'
     with:
       env: dev
@@ -22,10 +22,10 @@ jobs:
   tf-prod-plan:
     name: TF PROD PLAN
     needs: [tf-dev-plan]
-    uses: kyalders/terraform_workflows/.github/workflows/terraform-beta.yml@main
+    uses: kyalders/terraform_workflows/.github/workflows/terraform.yml@main
     if: github.event_name == 'pull_request' && github.event.action != 'closed' || github.event_name == 'workflow_dispatch'
     with:
-      env: prod-test
+      env: prod
       tf-path: ./
       tf-plan: true
       tf-apply: false
@@ -35,7 +35,7 @@ jobs:
 
   tf-dev-apply:
     name: TF DEV APPLY
-    uses: kyalders/terraform_workflows/.github/workflows/terraform-beta.yml@main
+    uses: kyalders/terraform_workflows/.github/workflows/terraform.yml@main
     if: github.event.action == 'closed' && github.event.pull_request.merged == true && github.ref == 'main'
     with:
       env: dev

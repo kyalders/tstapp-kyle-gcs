@@ -2,8 +2,8 @@ terraform {
   #required_version = "~>1.1.0"
   required_providers {
     google = {
-      source  = "hashicorp/google"
-      version = ">= 3.0.0, < 5.0.0"
+      source = "hashicorp/google"
+      #version = ">= 3.0.0, < 5.0.0"
     }
 
     google-beta = {
@@ -12,23 +12,11 @@ terraform {
     }
   }
 
-  backend "remote" {
+  cloud {
     organization = "kylesbx"
 
     workspaces {
-      prefix = "tstapp-kyle-gcs-"
+      tags = ["env:#{environment}#", "app:tst-app-kyle"]
     }
   }
-
-
-
-}
-
-
-provider "google" {
-  project = var.project_id
-}
-
-provider "google-beta" {
-  project = var.project_id
 }
