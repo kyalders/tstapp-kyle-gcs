@@ -1,0 +1,18 @@
+name: Terraform Prod Deployment
+
+on:
+  workflow_dispatch:
+
+jobs:
+  tf-prod-apply:
+    name: TF DEV APPLY
+    uses: kyalders/terraform_workflows/.github/workflows/terraform-beta.yml@main
+    if: github.ref == 'main'
+    with:
+      env: prod
+      tf-path: ./
+      token-files: '["./provider.tf"]'
+      tf-plan: false
+      tf-apply: true
+    secrets:
+      TF_API_TOKEN: ${{ secrets.TF_API_TOKEN }}

@@ -1,0 +1,47 @@
+name: Terraform Dev PR Workflow
+
+on:
+  pull_request:
+    types: [opened, reopened, synchronize, closed]
+  workflow_dispatch:
+
+jobs:
+  tf-dev-plan:
+    name: TF DEV PLAN
+    uses: kyalders/terraform_workflows/.github/workflows/terraform-beta.yml@main
+    if: github.event_name == 'pull_request' && github.event.action != 'closed'  || github.event_name == 'workflow_dispatch'
+    with:
+      env: dev
+      tf-path: ./
+      tf-plan: true
+      tf-apply: false
+      token-files: '["./provider.tf"]'
+    secrets:
+      TF_API_TOKEN: ${{ secrets.TF_API_TOKEN }}
+
+  tf-prod-plan:
+    name: TF PROD PLAN
+    needs: [tf-dev-plan]
+    uses: kyalders/terraform_workflows/.github/workflows/terraform-beta.yml@main
+    if: github.event_name == 'pull_request' && github.event.action != 'closed' || github.event_name == 'workflow_dispatch'
+    with:
+      env: prod-test
+      tf-path: ./
+      tf-plan: true
+      tf-apply: false
+      token-files: '["./provider.tf"]'
+    secrets:
+      TF_API_TOKEN: ${{ secrets.TF_API_TOKEN }}
+
+  tf-dev-apply:
+    name: TF DEV APPLY
+    uses: kyalders/terraform_workflows/.github/workflows/terraform-beta.yml@main
+    if: github.event.action == 'closed' && github.event.pull_request.merged == true && github.ref == 'main'
+    with:
+      env: dev
+      tf-path: ./
+      token-files: '["./provider.tf"]'
+      tf-plan: false
+      tf-apply: true
+    secrets:
+      TF_API_TOKEN: ${{ secrets.TF_API_TOKEN }}
